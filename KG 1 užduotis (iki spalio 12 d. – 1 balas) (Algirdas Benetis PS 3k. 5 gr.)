@@ -9,6 +9,12 @@
 <label for="moves">Irasykite pasirinkta zingsniu skaiciu: </label>
 <input type="text" id="moves" name="moves">
 <button type="button" id="myBtn" onclick="buttonAction()">Generuoti</button>
+<br>
+<br>
+<button type="button" id="anim1" onclick="anim1()">1-oji animacija</button>
+<button type="button" id="anim2" onclick="anim2()">2-oji animacija</button>
+<button type="button" id="anim3" onclick="anim3()">3-oji animacija</button>
+<button type="button" id="anim4" onclick="anim4()">4-oji animacija</button>
 <br/>
 <br/>
 <canvas id="canvas" width="500" height="500"></canvas>
@@ -24,6 +30,204 @@
             draw(document.getElementById("moves").value);
         else
             draw(0);
+    }
+
+    function borders() {
+        var canvas = document.getElementById('canvas');
+        if (canvas.getContext) {
+            var ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(500, 0);
+            ctx.lineTo(500, 500);
+            ctx.lineTo(0, 500);
+            ctx.closePath();
+            ctx.stroke();
+        }
+    }
+
+    //1 animacija
+    function anim1() {
+
+        var canvas = document.getElementById('canvas');
+        if (canvas.getContext) {
+            var ctx = canvas.getContext("2d");
+
+            var x=0;
+            var s=1;
+            var angle = 0;
+
+            var interval1 = setInterval(animate1, 20);
+            var finish = 0;
+
+            function animate1() {
+
+                //if(angle>89 && x<250) clearInterval(interval1);
+                if(finish===1) clearInterval(interval1);
+
+                else {
+                    ctx.save()
+                    ctx.clearRect(0, 0, 500, 500);
+                    borders();
+                    ctx.translate(x,0);
+                    ctx.rotate(angle * Math.PI / 180);
+                    ctx.scale(s,s);
+
+                    animate('orange');
+                    if(angle>89 && x<=250) finish=1;
+
+                    ctx.restore();
+                    console.log("s = " + s);
+                    console.log("angle = " + angle);
+
+                    if(s>0.5)
+                    s-=0.01;
+                    if (s<=0.5 && x>=125 && angle<=89)
+                    angle += 1.8;
+
+                    if(s<=0.5 && x<125)
+                        x += 5;
+                    if (angle<=89 && x>=125 && x<275)
+                        x+=3;
+                    if (angle>89 && x>250) {
+                        x -= 2.5;
+                    }
+
+                }
+
+            }
+        }
+    }
+
+    //2 animacija
+    function anim2() {
+
+        var canvas = document.getElementById('canvas');
+        if (canvas.getContext) {
+            var ctx = canvas.getContext("2d");
+
+            var x = 0;
+            var y = 0;
+            var sx =1;
+            var sy =1;
+            var interval2 = setInterval(animate2, 20);
+
+            function animate2() {
+
+                if(x>500) clearInterval(interval2);
+
+                else {
+
+                    ctx.save()
+                    ctx.clearRect(0, 0, 500, 500);
+                    borders();
+                    ctx.translate(x,y);
+                    ctx.scale(sx,sy);
+
+                    animate('red');
+
+                    ctx.restore();
+
+                    sx-=0.03;
+                    sy-=0.01;
+                    x+=10;
+                }
+
+            }
+
+        }
+    }
+
+    //3 animacija
+    function anim3() {
+
+        var canvas = document.getElementById('canvas');
+        if (canvas.getContext) {
+            var ctx = canvas.getContext("2d");
+
+            var x = 0;
+            var y = 0;
+            var sx =1;
+            var sy =1;
+            var interval2 = setInterval(animate3, 20);
+
+            function animate3() {
+
+                if(x>375) clearInterval(interval2);
+
+                else {
+
+                    ctx.save()
+                    ctx.clearRect(0, 0, 500, 500);
+                    borders();
+                    ctx.translate(x,y);
+                    ctx.scale(sx,sy);
+
+                    animate('blue');
+
+                    ctx.restore();
+
+                    sx-=0.015;
+                    sy-=0.025;
+                    x+=7.5;
+                    y+=7.5;
+                }
+
+            }
+
+        }
+    }
+
+    //4 animacija
+    function anim4() {
+
+        var canvas = document.getElementById('canvas');
+        if (canvas.getContext) {
+            var ctx = canvas.getContext("2d");
+            var x = 0;
+            var y = 0;
+            var s=1;
+            var interval4 = setInterval(animate4, 20);
+
+            function animate4() {
+
+                if(y>250) clearInterval(interval4);
+
+                else {
+
+                    ctx.save()
+                    ctx.clearRect(0, 0, 500, 500);
+                    borders();
+                    ctx.transform(s,0,0,s,x,y);
+                    animate('green');
+
+                    ctx.restore();
+                    s-=0.01;
+                    y+=5;
+                }
+
+            }
+
+        }
+    }
+
+    //draw animacijoms
+    function animate(color) {
+        var canvas = document.getElementById('canvas');
+        if (canvas.getContext) {
+            var ctx = canvas.getContext("2d");
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(500, 0);
+            ctx.lineTo(500, 375);
+            ctx.lineTo(375, 375); //
+            ctx.lineTo(375, 250);
+            ctx.lineTo(250, 250);
+            ctx.lineTo(250, 500);
+            ctx.lineTo(0, 500);
+            ctx.fill();
+        }
     }
 
     function draw(moves) {
@@ -115,37 +319,37 @@
             ctx.lineTo(0,250);
             ctx.lineTo(0,0)
             ctx.fill();
-            ctx.closePath()
+            ctx.closePath();
 
             ctx.fillStyle = "red";
-            ctx.beginPath()
-            ctx.moveTo(250, 0)
+            ctx.beginPath();
+            ctx.moveTo(250, 0);
             ctx.lineTo(500,0);
             ctx.lineTo(500,250);
             ctx.lineTo(250,250);
             ctx.lineTo(250,0);
             ctx.fill();
-            ctx.closePath()
+            ctx.closePath();
 
             ctx.fillStyle = "blue";
-            ctx.beginPath()
-            ctx.moveTo(375,250)
+            ctx.beginPath();
+            ctx.moveTo(375,250);
             ctx.lineTo(500,250);
             ctx.lineTo(500,375);
             ctx.lineTo(375,375);
             ctx.lineTo(375,250);
             ctx.fill();
-            ctx.closePath()
+            ctx.closePath();
 
             ctx.fillStyle = "green";
-            ctx.beginPath()
-            ctx.moveTo(0, 250)
+            ctx.beginPath();
+            ctx.moveTo(0, 250);
             ctx.lineTo(250,250);
             ctx.lineTo(250,500);
             ctx.lineTo(0,500);
             ctx.lineTo(0,250);
             ctx.fill();
-            ctx.closePath()
+            ctx.closePath();
         }
     }
 </script>
