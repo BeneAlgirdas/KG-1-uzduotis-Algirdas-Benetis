@@ -33,9 +33,9 @@
     }
 
     function borders() {
-        var canvas = document.getElementById('canvas');
+        const canvas = document.getElementById('canvas');
         if (canvas.getContext) {
-            var ctx = canvas.getContext("2d");
+            const ctx = canvas.getContext("2d");
             ctx.beginPath();
             ctx.moveTo(0, 0);
             ctx.lineTo(500, 0);
@@ -49,16 +49,16 @@
     //1 animacija
     function anim1() {
 
-        var canvas = document.getElementById('canvas');
+        const canvas = document.getElementById('canvas');
         if (canvas.getContext) {
-            var ctx = canvas.getContext("2d");
+            const ctx = canvas.getContext("2d");
 
-            var x=0;
-            var s=1;
-            var angle = 0;
+            let x = 0;
+            let s = 1;
+            let angle = 0;
 
-            var interval1 = setInterval(animate1, 20);
-            var finish = 0;
+            const interval1 = setInterval(animate1, 20);
+            let finish = 0;
 
             function animate1() {
 
@@ -102,15 +102,15 @@
     //2 animacija
     function anim2() {
 
-        var canvas = document.getElementById('canvas');
+        const canvas = document.getElementById('canvas');
         if (canvas.getContext) {
-            var ctx = canvas.getContext("2d");
+            const ctx = canvas.getContext("2d");
 
-            var x = 0;
-            var y = 0;
-            var sx =1;
-            var sy =1;
-            var interval2 = setInterval(animate2, 20);
+            let x = 0;
+            const y = 0;
+            let sx = 1;
+            let sy = 1;
+            const interval2 = setInterval(animate2, 20);
 
             function animate2() {
 
@@ -141,15 +141,15 @@
     //3 animacija
     function anim3() {
 
-        var canvas = document.getElementById('canvas');
+        const canvas = document.getElementById('canvas');
         if (canvas.getContext) {
-            var ctx = canvas.getContext("2d");
+            const ctx = canvas.getContext("2d");
 
-            var x = 0;
-            var y = 0;
-            var sx =1;
-            var sy =1;
-            var interval2 = setInterval(animate3, 20);
+            let x = 0;
+            let y = 0;
+            let sx = 1;
+            let sy = 1;
+            const interval2 = setInterval(animate3, 20);
 
             function animate3() {
 
@@ -181,13 +181,13 @@
     //4 animacija
     function anim4() {
 
-        var canvas = document.getElementById('canvas');
+        const canvas = document.getElementById('canvas');
         if (canvas.getContext) {
-            var ctx = canvas.getContext("2d");
-            var x = 0;
-            var y = 0;
-            var s=1;
-            var interval4 = setInterval(animate4, 20);
+            const ctx = canvas.getContext("2d");
+            const x = 0;
+            let y = 0;
+            let s = 1;
+            const interval4 = setInterval(animate4, 20);
 
             function animate4() {
 
@@ -213,9 +213,9 @@
 
     //draw animacijoms
     function animate(color) {
-        var canvas = document.getElementById('canvas');
+        const canvas = document.getElementById('canvas');
         if (canvas.getContext) {
-            var ctx = canvas.getContext("2d");
+            const ctx = canvas.getContext("2d");
             ctx.fillStyle = color;
             ctx.beginPath();
             ctx.moveTo(0, 0);
@@ -232,7 +232,9 @@
 
     function draw(moves) {
 
+
         let canvas = document.getElementById('canvas');
+        let first;
         if (canvas.getContext) {
             var ctx = canvas.getContext("2d");
             ctx.clearRect(0, 0, 500, 500);
@@ -246,8 +248,8 @@
             ctx.stroke();
 
             if (moves != null) {
-                var first = true;
-                if(moves == 0)
+                first = true;
+                if(moves === 0)
                     draw0();
                 else
                     create(moves);
